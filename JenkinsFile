@@ -16,6 +16,7 @@ pipeline {
             }
         }
         stage('Deploy') {
+            when { equals expected: true, actual: Deploy }
             steps {
                 sh 'cat ./deploy.sh'
                 sh 'echo "Deploying..."'
