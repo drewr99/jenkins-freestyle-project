@@ -16,6 +16,9 @@ pipeline {
             }
         }
         stage('Deploy') {
+            when {
+                expression {deploy == ture}
+            }
             steps {
                 sh 'cat ./deploy.sh'
                 sh 'echo "Deploying..."'
