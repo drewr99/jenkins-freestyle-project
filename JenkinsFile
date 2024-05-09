@@ -16,9 +16,6 @@ pipeline {
             }
         }
         stage('Deploy') {
-            when {
-                expression { params.SKIP_DEPLOY = true } // Conditionally skip the Deploy stage
-            }
             steps {
                 sh 'cat ./deploy.sh'
                 sh 'echo "Deploying..."'
