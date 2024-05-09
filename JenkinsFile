@@ -1,5 +1,6 @@
 pipeline {
     agent any
+    options { skipStagesAfterUnstable() }
     stages {
         stage('Build') {
             steps {
@@ -16,9 +17,6 @@ pipeline {
             }
         }
         stage('Deploy') {
-            when {
-                expression {deploy == ture}
-            }
             steps {
                 sh 'cat ./deploy.sh'
                 sh 'echo "Deploying..."'
