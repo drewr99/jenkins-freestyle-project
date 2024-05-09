@@ -1,8 +1,5 @@
 pipeline {
     agent any
-    parameters {
-        booleanParam(name: 'skip_test', defaultValue: false, description: 'Set to true to skip the test stage')
-    }
     stages {
         stage('Build') {
             steps {
@@ -19,6 +16,9 @@ pipeline {
             }
         }
         stage('Deploy') {
+             when {
+                expression { params.SKIP_DEPLOY != true }
+            }
             steps {
                 sh 'cat ./deploy.sh'
                 sh 'echo "Deploying..."'
